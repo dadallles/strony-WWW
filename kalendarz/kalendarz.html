@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html lang="pl-PL">
+<head>
+    <title>Kalendarz studencki 2019/20</title>
+    <meta charset="UTF-8">
+    <style>
+        .container {
+            margin: auto;
+            width: 297mm;
+            height: 210mm;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .miesiac {
+            margin: 0;
+            width: 297mm;
+            height: 15mm;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .tabela {
+            position: relative;
+            font-size: 6mm;
+            font-weight: bold;
+        }
+
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        #tabelka tr {
+            border: solid black 1.5mm;
+        }
+
+        #tabelka td {
+            border-right: solid black 1.5mm; 
+        }
+
+        #t1>td {
+            background: cornflowerblue;
+            width: 40mm;
+            height: 10mm;
+            text-align: center;
+        }
+
+        td {
+            width: 40mm;
+            height: 30mm;
+            text-align: left;
+        }
+
+    </style>
+    <script>
+        var data = new Date();
+        var m = data.getMonth();
+        var r = data.getFullYear();
+
+        function nazwa_miesiac(miesiac)
+        {
+                if(miesiac === 1){return "styczeń";}
+                if(miesiac === 2){return "luty";}
+                if(miesiac === 3){return "marzec";}
+                if(miesiac === 4){return "kwiecień";}
+                if(miesiac === 5){return "maj";}
+                if(miesiac === 6){return "czerwiec";}
+                if(miesiac === 7){return "lipiec";}
+                if(miesiac === 8){return "sierpień";}
+                if(miesiac === 9){return "wrzesień";}
+                if(miesiac === 10){return "październik";}
+                if(miesiac === 11){return "listopad";}
+                if(miesiac === 12){return "grudzień";}
+        }
+
+        function l_dni(miesiac, rok)
+        {
+                if(miesiac === 1){return 31;}
+                if(miesiac === 2)
+                {
+                    if(rok % 4 == 0){return 29;}
+                    else{return 28;}
+                }
+                if(miesiac === 3){return 31;}
+                if(miesiac === 4){return 30;}
+                if(miesiac === 5){return 31;}
+                if(miesiac === 6){return 30;}
+                if(miesiac === 7){return 31;}
+                if(miesiac === 8){return 31;}
+                if(miesiac === 9){return 30;}
+                if(miesiac === 10){return 31;}
+                if(miesiac === 11){return 30;}
+                if(miesiac === 12){return 31;}
+        }
+
+        //dni i swieta wolne od pracy
+        function swieta(d, m)
+        {
+            if( d==1 && m==0  || d==6 && m==0 || d==12 && m==3 || d==13 && m==3 || d==1 && m==4 || d==3 && m==4 || d==31 && m==4 || d==11 && m==5 || d==15 && m==7 || d==1 && m==10 || d==11 && m==10 || d==25 && m==11 || d==26 && m==11 )
+            {
+                return true;
+            }
+        }
+
+        //dni wolne w roku akademickim 2019/2020
+        function wolne(d, m, r)
+        {
+            if( d>=24 && m==11 && r==2019   ||   d<=6 && m==0 && r==2020   ||   d>=17 && d<=21 && m==1 && r==2020   ||   d>=11 && d<=14 && m==3 && r==2020    ||   d==12 && m==5 && r==2020 )
+            {
+                return true;
+            }
+        }
+
+        //odrabianie zajec z innego dnia
+        function odrabianie(d, m, r)
+        {
+            if(d==28 && m==0 && r==2020)
+            {
+                return "Zajęcia z poniedziałku";
+            }
+            else if(d==29 && m==0 && r==2020)
+            {
+                return "Zajęcia z piątku";
+            }
+            else if(d==10 && m==5 && r==2020)
+            {
+                return "Zajęcia z piątku";
+            }
+        }
+
+        function rysuj(mie, rok)
+        {
+                var data = new Date(rok,mie,1,22,59,59,999);
+                var dzien_tygodnia = data.getDay();
+                var miesiac = data.getMonth() + 1;
+                
+                var miesiaccc = nazwa_miesiac(miesiac);
+                document.getElementById("mies").innerHTML = miesiaccc.toUpperCase() + " " + r;
+                var liczba_dni = l_dni(miesiac, rok);
+
+                let nr = 1;
+                if(dzien_tygodnia == 0) 
+                {
+                    dzien_tygodnia = 7;
+                }
+
+                let tableRef = document.getElementById("tabelka");
+                let newRow = tableRef.insertRow(-1);
+
+                var lista_uwag = "";
+
+                for(let i=0; i<7; ++i)
+                {
+                    let newCell = newRow.insertCell(i);
+                    if(i+1 >= dzien_tygodnia)
+                    {
+                        if( i==6 || swieta(nr, m) )
+                        {
+                            newTable = document.createElement("table");
+                            newTable.innerHTML = "<tr style=' border:0mm; ' ><td style=' height: 5mm; text-align: center; border-bottom: solid 0.5mm; border-right: none; color:red; '>" + nr + "</td></tr> <tr style=' border:0mm; ' ><td style=' height: 26mm; text-align: center; font-size: 360% ; border-right: none; color:red; '> X </td></tr>";
+                        }
+                        else if( i==5 )
+                        {
+                            newTable = document.createElement("table");
+                            newTable.innerHTML = "<tr style=' border:0mm; ' ><td style=' height: 5mm; text-align: center; border-bottom: solid 0.5mm; border-right: none; color: #747474; '>" + nr + "</td></tr> <tr style=' border:0mm; ' ><td style=' height: 26mm; text-align: center; font-size: 360% ; border-right: none; color: #747474; '> X </td></tr>";
+                        }
+                        else if( wolne(nr, m, r) )
+                        {
+                            newTable = document.createElement("table");
+                            newTable.innerHTML = "<tr style=' border:0mm; ' ><td style=' height: 5mm; text-align: center; border-bottom: solid 0.5mm; border-right: none; '>" + nr + "</td></tr> <tr style=' border:0mm; ' ><td style=' height: 26mm; text-align: center; font-size: 360% ; border-right: none; '> X </td></tr>";
+                        }
+                        else
+                        {
+                            var uwaga = odrabianie(nr, m, r); 
+                            if(uwaga)
+                            {
+                                lista_uwag = lista_uwag + "<br>" + "<span style='color: red;'>" + nr + "*</span> ) " + uwaga;
+                                newTable = document.createElement("table");
+                                newTable.innerHTML = "<tr style=' border:0mm; ' ><td style=' height: 5mm; text-align: center; border-bottom: solid 0.5mm; border-right: none; '>" + nr + "<span style='color: red; '>*</span>" + "</td></tr> <tr style=' border:0mm; ' ><td style=' height: 18mm; text-align: center; font-size: 200%; border-right: none; '> : </td></tr> <tr style=' border:0mm; ' ><td style=' height: 5mm; text-align: right; border-top: solid 0.5mm; border-right: none; '>sztuk</td></tr>";
+                            }
+                            else
+                            {
+                                newTable = document.createElement("table");
+                                newTable.innerHTML = "<tr style=' border:0mm; ' ><td style=' height: 5mm; text-align: center; border-bottom: solid 0.5mm; border-right: none; '>" + nr + "</td></tr> <tr style=' border:0mm; ' ><td style=' height: 18mm; text-align: center; font-size: 200%; border-right: none; '> : </td></tr> <tr style=' border:0mm; ' ><td style=' height: 5mm; text-align: right; border-top: solid 0.5mm; border-right: none; '>sztuk</td></tr>";
+                            }    
+                        }
+                        newCell.appendChild(newTable);
+                        nr++;
+                        liczba_dni--;
+                    } 
+                }
+                while(liczba_dni)
+                {
+                    let newRow = tableRef.insertRow(-1);
+                    for(let i=0; i<7; ++i)
+                    {
+                        let newCell = newRow.insertCell(i);
+                        if(liczba_dni > 0)
+                        {
+                            if( i==6 || swieta(nr, m) )
+                            {
+                                newTable = document.createElement("table");
+                                newTable.innerHTML = "<tr style=' border:0mm; ' ><td style=' height: 5mm; text-align: center; border-bottom: solid 0.5mm; border-right: none; color:red; '>" + nr + "</td></tr> <tr style=' border:0mm; ' ><td style=' height: 26mm; text-align: center; font-size: 360% ; border-right: none; color:red; '> X </td></tr>";
+                            }
+                            else if( i==5 )
+                            {
+                                newTable = document.createElement("table");
+                                newTable.innerHTML = "<tr style=' border:0mm; ' ><td style=' height: 5mm; text-align: center; border-bottom: solid 0.5mm; border-right: none; color: #747474; '>" + nr + "</td></tr> <tr style=' border:0mm; ' ><td style=' height: 26mm; text-align: center; font-size: 360% ; border-right: none; color: #747474; '> X </td></tr>";
+                            }
+                            else if( wolne(nr, m, r) )
+                            {
+                                newTable = document.createElement("table");
+                                newTable.innerHTML = "<tr style=' border:0mm; ' ><td style=' height: 5mm; text-align: center; border-bottom: solid 0.5mm; border-right: none; '>" + nr + "</td></tr> <tr style=' border:0mm; ' ><td style=' height: 26mm; text-align: center; font-size: 360% ; border-right: none; '> X </td></tr>";
+                            }
+                            else
+                            {
+                                var uwaga = odrabianie(nr, m, r); 
+                                if(uwaga)
+                                {
+                                    lista_uwag = lista_uwag + "<br>" + "<span style='color: red;'>" + nr + "*</span> ) " + uwaga;
+                                    newTable = document.createElement("table");
+                                    newTable.innerHTML = "<tr style=' border:0mm; ' ><td style=' height: 5mm; text-align: center; border-bottom: solid 0.5mm; border-right: none; '>" + nr + "<span style='color: red; '>*</span>" + "</td></tr> <tr style=' border:0mm; ' ><td style=' height: 18mm; text-align: center; font-size: 200%; border-right: none; '> : </td></tr> <tr style=' border:0mm; ' ><td style=' height: 5mm; text-align: right; border-top: solid 0.5mm; border-right: none; '>sztuk</td></tr>";
+                                }
+                                else
+                                {
+                                    newTable = document.createElement("table");
+                                    newTable.innerHTML = "<tr style=' border:0mm; ' ><td style=' height: 5mm; text-align: center; border-bottom: solid 0.5mm; border-right: none; '>" + nr + "</td></tr> <tr style=' border:0mm; ' ><td style=' height: 18mm; text-align: center; font-size: 200%; border-right: none; '> : </td></tr> <tr style=' border:0mm; ' ><td style=' height: 5mm; text-align: right; border-top: solid 0.5mm; border-right: none; '>sztuk</td></tr>";
+                                } 
+                            }                           
+                            newCell.appendChild(newTable);
+                            nr++;
+                            liczba_dni--;
+                        }
+                    }
+                }
+                document.getElementById("lista").innerHTML = lista_uwag;
+        }
+
+        function clear_table()
+        {
+            var table = document.getElementById("tabelka");
+            var rowCount = table.rows.length;
+            for(let i=rowCount; i>1; --i)
+            {
+                table.deleteRow(i - 1);
+            }
+        }
+
+        function next()
+        {
+            clear_table();
+            if(m == 11)
+            {
+                m = 0;
+                r++;
+            }
+            else
+            {
+                m++;
+            }
+            rysuj(m, r);
+        }
+
+        function pre()
+        {
+            clear_table();
+            if(m == 0)
+            {
+                m = 11;
+                r--;
+            }
+            else
+            {
+                m--;
+            }
+            rysuj(m, r);
+        }
+
+        function drukuj()
+        {
+            let footer = document.getElementById("footer");
+            footer.style.visibility = "hidden";
+            window.print();
+            footer.style.visibility = "visible";
+        }
+
+    </script>
+</head>
+<body onload="rysuj(m,r)">
+
+    <div class="container">
+
+        <div class="miesiac">
+            <p id="mies"></p>
+        </div>
+
+        <div class="tabela">
+            <table id="tabelka">
+                <tr id="t1">
+                    <td>Poniedziałek</td>
+                    <td>Wtorek</td>
+                    <td>Środa</td>
+                    <td>Czwartek</td>
+                    <td>Piątek</td>
+                    <td style="color: #747474;;">Sobota</td>
+                    <td style="color: red; ;">Niedziela</td>
+                </tr>
+            </table>
+            <div class="uwaga" style="font-size: 70%; margin-left: 10mm;">
+                <span id="lista"></span>
+            </div>
+        </div>
+
+        <div id="footer">
+            <hr>
+            <p style="text-align: center;">
+                <input type="button" style="font-size: 22px;" value="Poprzedni miesiąc" onclick="pre()">
+                <button style="font-size: 22px;" onclick="drukuj()">Wydrukuj</button>
+                <input type="button" style="font-size: 22px;" value="Następny miesiąc" onclick="next()">
+             </p>
+        </div>
+
+    </div>
+
+</body>
+</html>

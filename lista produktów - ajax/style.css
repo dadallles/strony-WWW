@@ -1,0 +1,10 @@
+#tab thead th 
+{ 
+    cursor: pointer; 
+}
+
+#tab thead th span
+{
+    font-size: 70%;
+    display: block;
+}
