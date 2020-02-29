@@ -1,0 +1,113 @@
+.container {
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.miesiac {
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.tabela {
+    position: relative;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+#tabelka tr {
+    border: solid black 6px;
+}
+
+#tabelka td {
+    border-right: solid black 6px; 
+}
+
+#t1>td {
+    background: cornflowerblue;
+    width: 160px;
+    height: 40px;
+    text-align: center;
+}
+
+td {
+    margin: 0;
+    padding: 0;
+    width: 160px;
+    height: 130px;
+    text-align: left;
+}
+
+#niedziela_first {
+    color: #747474;
+}
+
+#sobota_first {
+    color: red;
+}
+
+tr #niedziela {
+    border: none;
+}
+
+td #niedziela {
+    height: 30px; 
+    text-align: center; 
+    border-bottom: solid 2px; 
+    color:red;
+}
+
+tr #niedziela_in {
+    border: none;
+}
+
+td #niedziela_in {
+    height: 100px; 
+    border: none;
+}
+
+tr #sobota {
+    border: none;
+}
+
+td #sobota {
+    height: 30px; 
+    text-align: center; 
+    border-bottom: solid 2px; 
+    color:#747474;
+}
+tr #sobota_in {
+    border: none;
+}
+
+td #sobota_in {
+    height: 100px; 
+    border: none;
+}
+
+tr #roboczy {
+    border: 0;
+}
+
+td #roboczy {
+    height: 30px; 
+    text-align: center; 
+    border-bottom: solid 2px; 
+}
+tr #roboczy_in {
+    border: none;
+}
+
+td #roboczy_in {
+    height: 100px; 
+    border: none;
+}

@@ -1,0 +1,136 @@
+.container {
+    width: 1845px;
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#rok {
+    margin: 0;
+    padding: 0;
+    height: 45px;
+    font-size: 37.5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.miesiac {
+    margin: 0;
+    height: 30px;
+    font-size: 16.5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.tabela_div_left {
+    clear: both;
+    float: left;
+    margin: 20px;
+}
+
+.tabela_div_right {
+    float: left;
+    margin: 20px;
+}
+
+.tabela {
+    font-size: 16.5px;
+    font-weight: bold;
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.tabelka tr {
+    border: solid black 4.5px;
+}
+
+.tabelka td {
+    border-right: solid black 4.5px; 
+}
+
+#t1>td {
+    background: cornflowerblue;
+    width: 120px;
+    height: 30px;
+    text-align: center;
+}
+
+td {
+    margin: 0;
+    padding: 0;
+    width: 120px;
+    height: 97.5px;
+    text-align: left;
+}
+
+#niedziela_first {
+    color: #747474;
+}
+
+#sobota_first {
+    color: red;
+}
+
+tr #niedziela {
+    border: none;
+}
+
+td #niedziela {
+    height: 22.5px; 
+    text-align: center; 
+    border-bottom: solid 1.5px; 
+    color:red;
+}
+
+tr #niedziela_in {
+    border: none;
+}
+
+td #niedziela_in {
+    height: 75px; 
+    border: none;
+}
+
+tr #sobota {
+    border: none;
+}
+
+td #sobota {
+    height: 22.5px; 
+    text-align: center; 
+    border-bottom: solid 1.5px; 
+    color:#747474;
+}
+tr #sobota_in {
+    border: none;
+}
+
+td #sobota_in {
+    height: 75px; 
+    border: none;
+}
+
+tr #roboczy {
+    border: 0;
+}
+
+td #roboczy {
+    height: 22.5px; 
+    text-align: center; 
+    border-bottom: solid 1.5px; 
+}
+tr #roboczy_in {
+    border: none;
+}
+
+td #roboczy_in {
+    height: 75px; 
+    border: none;
+}
+
+#menu {
+    clear: both;
+}
