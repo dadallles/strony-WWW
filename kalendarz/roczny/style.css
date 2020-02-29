@@ -1,5 +1,4 @@
 .container {
-    width: 1845px;
     margin: auto;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -21,15 +20,35 @@
     text-align: center;
 }
 
-.tabela_div_left {
-    clear: both;
-    float: left;
-    margin: 20px;
+@media (max-device-width: 1844px) {
+    .container {
+        width: 872px;
+    }
+
+    .tabela_div_left {
+        margin: 20px;
+    }
+    
+    .tabela_div_right {
+        margin: 20px;
+    }
 }
 
-.tabela_div_right {
-    float: left;
-    margin: 20px;
+@media screen and (min-device-width: 1845px) {
+    .container {
+        width: 1845px;
+    }
+    
+    .tabela_div_left {
+        margin: 20px;
+        clear: both;
+        float: left;
+      }
+    
+     .tabela_div_right {
+        margin: 20px;
+        float: left;
+      }
 }
 
 .tabela {
