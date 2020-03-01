@@ -104,15 +104,6 @@ td #niedziela {
     color:red;
 }
 
-tr #niedziela_in {
-    border: none;
-}
-
-td #niedziela_in {
-    height: 75px; 
-    border: none;
-}
-
 tr #sobota {
     border: none;
 }
@@ -122,14 +113,6 @@ td #sobota {
     text-align: center; 
     border-bottom: solid 1.5px; 
     color:#747474;
-}
-tr #sobota_in {
-    border: none;
-}
-
-td #sobota_in {
-    height: 75px; 
-    border: none;
 }
 
 tr #roboczy {
@@ -141,11 +124,8 @@ td #roboczy {
     text-align: center; 
     border-bottom: solid 1.5px; 
 }
-tr #roboczy_in {
-    border: none;
-}
 
-td #roboczy_in {
+td #tab_in {
     height: 75px; 
     border: none;
 }

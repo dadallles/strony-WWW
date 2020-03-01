@@ -1,14 +1,10 @@
-var data = new Date();
-var r = data.getFullYear();
+var data_ = new Date();
+var r_ = data_.getFullYear();
 
 var tab_niedz_before = "<tr id='niedziela'><td id='niedziela'>";
-var tab_niedz_after = "</td></tr> <tr id='niedziela_in'><td id='niedziela_in'></td></tr>";
-
 var tab_sob_before = "<tr id='sobota'><td id='sobota'>";
-var tab_sob_after = "</td></tr> <tr id='sobota_in'><td id='sobota_in'></td></tr>";
-
 var tab_rob_before = "<tr id='roboczy'><td id='roboczy'>";
-var tab_rob_after = "</td></tr> <tr id='roboczy_in'><td id='roboczy_in'></td></tr>";
+var tab_all_after = "</td></tr> <tr id='tab_in'><td id='tab_in'></td></tr>";
 
 document.addEventListener("DOMContentLoaded", function(event) {
     var tab_div = document.querySelector(".tabela");
@@ -34,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         newDiv.appendChild(newTable);
         tab_div.appendChild(newDiv);
 
-        rysuj(i, r);
+        rysuj(i, r_);
     }
 
     document.querySelector("#pre").addEventListener("click", pre);
@@ -89,11 +85,11 @@ function swieta(d, m)
 
 function rysuj(mie, rok)
 {
-        var data = new Date(rok,mie,1,22,59,59,999);
+        var data = new Date(rok, mie);
         var dzien_tygodnia = data.getDay();
         
         var liczba_dni = l_dni(mie, rok);
-        document.querySelector("#rok").innerHTML = r;
+        document.querySelector("#rok").innerHTML = r_;
 
         var nr = 1;
         if(dzien_tygodnia == 0) 
@@ -103,26 +99,27 @@ function rysuj(mie, rok)
 
         var tableRef = document.getElementById(mie);
         var newRow = tableRef.insertRow(-1);
+        var newCell, newTable;
 
         for(let i=0; i<7; ++i)
         {
-            let newCell = newRow.insertCell(i);
+            newCell = newRow.insertCell(i);
             if(i+1 >= dzien_tygodnia)
             {
                 if( i==6 || swieta(nr, mie) )
                 {
                     newTable = document.createElement("table");
-                    newTable.innerHTML = tab_niedz_before + nr + tab_niedz_after;
+                    newTable.innerHTML = tab_niedz_before + nr + tab_all_after;
                 }
                 else if( i==5 )
                 {
                     newTable = document.createElement("table");
-                    newTable.innerHTML = tab_sob_before + nr + tab_sob_after;
+                    newTable.innerHTML = tab_sob_before + nr + tab_all_after;
                 }
                 else
                 {
                     newTable = document.createElement("table");
-                    newTable.innerHTML = tab_rob_before + nr + tab_rob_after;
+                    newTable.innerHTML = tab_rob_before + nr + tab_all_after;
                 }    
 
                 newCell.appendChild(newTable);
@@ -133,7 +130,7 @@ function rysuj(mie, rok)
 
         while(liczba_dni)
         {
-            let newRow = tableRef.insertRow(-1);
+            newRow = tableRef.insertRow(-1);
             for(let i=0; i<7; ++i)
             {
                 let newCell = newRow.insertCell(i);
@@ -142,17 +139,17 @@ function rysuj(mie, rok)
                     if( i==6 || swieta(nr, mie) )
                     {
                         newTable = document.createElement("table");
-                        newTable.innerHTML = tab_niedz_before + nr + tab_niedz_after;
+                        newTable.innerHTML = tab_niedz_before + nr + tab_all_after;
                     }
                     else if( i==5 )
                     {
                         newTable = document.createElement("table");
-                        newTable.innerHTML = tab_sob_before + nr + tab_sob_after;
+                        newTable.innerHTML = tab_sob_before + nr + tab_all_after;
                     }
                     else
                     {
                         newTable = document.createElement("table");
-                        newTable.innerHTML = tab_rob_before + nr + tab_rob_after;
+                        newTable.innerHTML = tab_rob_before + nr + tab_all_after;
                     } 
                                                
                     newCell.appendChild(newTable);
@@ -179,27 +176,27 @@ function clear_table()
 function pre()
 {
     clear_table();
-    r--;
+    r_--;
     for(let i=0; i<12; ++i)
     {
-        rysuj(i, r);
+        rysuj(i, r_);
     }
 }
 
 function next()
 {
     clear_table();
-    r++;
+    r_++;
     for(let i=0; i<12; ++i)
     {
-        rysuj(i, r);
+        rysuj(i, r_);
     }
 }
 
 function print_cal()
 {
     let footer = document.querySelector("#menu");
-    footer.style.visibility = "hidden";
+    footer.style.display = "none";
     window.print();
-    footer.style.visibility = "visible";
+    footer.style.display = "block";
 }

@@ -44,7 +44,6 @@ td {
     margin: 0;
     padding: 0;
     width: 160px;
-    height: 130px;
     text-align: left;
 }
 
@@ -61,10 +60,11 @@ tr #niedziela {
 }
 
 td #niedziela {
-    height: 30px; 
+    height: 50px; 
     text-align: center; 
-    border-bottom: solid 2px; 
+    border-bottom: solid black 3px; 
     color:red;
+    font-size: 32px;
 }
 
 tr #sobota {
@@ -72,10 +72,11 @@ tr #sobota {
 }
 
 td #sobota {
-    height: 30px; 
+    height: 50px; 
     text-align: center; 
-    border-bottom: solid 2px; 
+    border-bottom: solid black 3px; 
     color:#747474;
+    font-size: 32px;
 }
 
 tr #roboczy {
@@ -83,12 +84,21 @@ tr #roboczy {
 }
 
 td #roboczy {
-    height: 30px; 
+    height: 50px; 
     text-align: center; 
-    border-bottom: solid 2px; 
+    border-bottom: solid 3px; 
+    font-size: 32px;
 }
 
 td #tab_in {
-    height: 100px; 
+    height: 50px; 
     border: none;
+    border-bottom: solid 2px;
+    font-size: 18px;
+    font-weight: normal;
+    padding-left: 2px;
+}
+
+td #tab_in :last-of-type {
+    border-bottom: none;
 }
