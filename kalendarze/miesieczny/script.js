@@ -36,7 +36,7 @@ function l_dni(miesiac, rok)
         if(miesiac === 1){return 31;}
         if(miesiac === 2)
         {
-            if(rok % 4 == 0){return 29;}
+            if(((rok%4 == 0) && (rok%100 != 0)) || (rok%400 == 0)){return 29;}
             else{return 28;}
         }
         if(miesiac === 3){return 31;}
