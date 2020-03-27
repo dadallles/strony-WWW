@@ -19,6 +19,18 @@
     font-weight: bold;
 }
 
+@media print {
+    .miesiac {
+        height: 10mm;
+    }
+
+    .tabela {
+        height: 195mm;
+        width: 290mm;
+        margin: auto;
+    }
+}
+
 table {
     margin: auto;
     border-collapse: collapse;
