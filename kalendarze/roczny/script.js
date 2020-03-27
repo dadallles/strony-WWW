@@ -1,12 +1,15 @@
 var data_ = new Date();
 var r_ = data_.getFullYear();
 
+var ruchome; //swieta ruchome
+
 var tab_niedz_before = "<tr id='niedziela'><td id='niedziela'>";
 var tab_sob_before = "<tr id='sobota'><td id='sobota'>";
 var tab_rob_before = "<tr id='roboczy'><td id='roboczy'>";
 var tab_all_after = "</td></tr> <tr id='tab_in'><td id='tab_in'></td></tr>";
 
 document.addEventListener("DOMContentLoaded", function(event) {
+    ruchome = swieta_ruchome(r_);
     var tab_div = document.querySelector(".tabela");
 
     for(let i=0; i<12; ++i)
@@ -74,12 +77,80 @@ function l_dni(miesiac, rok)
         if(miesiac === 11){return 31;}
 }
 
+//poniedzialek wielkanocny
+//boze cialo - +60 dni od wielkanocy
+function swieta_ruchome(year) 
+{
+    //wielkanoc
+    var poniedzialek_wielkanocny_dzien, poniedzialek_wielkanocny_miesiac, boze_cialo_dzien, boze_cialo_miesiac,
+        luty = l_dni(1, year), 
+        dzien_roku = 31 + luty, 
+        f = Math.floor,
+		G = year % 19,
+		C = f(year / 100),
+		H = (C - f(C / 4) - f((8 * C + 13)/25) + 19 * G + 15) % 30,
+		I = H - f(H/28) * (1 - f(29/(H + 1)) * f((21-G)/11)),
+		J = (year + f(year / 4) + I + 2 - C + f(C / 4)) % 7,
+		L = I - J,
+		month = 3 + f((L + 40)/44),
+        day = L + 28 - 31 * f(month / 4);
+
+    if( day==31 && month==3 )
+    {
+        poniedzialek_wielkanocny_dzien = 1;
+        poniedzialek_wielkanocny_miesiac = 3;
+    }
+    else
+    {
+        poniedzialek_wielkanocny_dzien = day + 1;
+        poniedzialek_wielkanocny_miesiac = month - 1;
+    }
+
+    if( month==3 )
+    {
+        dzien_roku += day;
+    }
+    else
+    {
+        dzien_roku = dzien_roku + 31 + day;
+    }
+
+    dzien_roku += 60;
+
+    if( luty==28 && dzien_roku<=151)
+    {
+        boze_cialo_dzien = dzien_roku - 120;
+        boze_cialo_miesiac = 4;
+    }
+    else if( luty==29 && dzien_roku<=152 )
+    {
+        boze_cialo_dzien = dzien_roku - 121;
+        boze_cialo_miesiac = 4;
+    }
+    else if( luty==29 )
+    {
+        boze_cialo_dzien = dzien_roku - 152;
+        boze_cialo_miesiac = 5;
+    }
+    else
+    {
+        boze_cialo_dzien = dzien_roku - 151;
+        boze_cialo_miesiac = 5;
+    }
+
+    return [poniedzialek_wielkanocny_dzien, poniedzialek_wielkanocny_miesiac, boze_cialo_dzien, boze_cialo_miesiac];
+}
+
 //dni i swieta wolne od pracy
 function swieta(d, m)
 {
-    if( d==1 && m==0  || d==6 && m==0 || d==12 && m==3 || d==13 && m==3 || d==1 && m==4 || d==3 && m==4 || d==31 && m==4 || d==11 && m==5 || d==15 && m==7 || d==1 && m==10 || d==11 && m==10 || d==25 && m==11 || d==26 && m==11 )
+    if( d==1 && m==0  || d==6 && m==0 || d==ruchome[0] && m==ruchome[1] || d==1 && m==4 || d==3 && m==4 || d==ruchome[2] && m==ruchome[3] || d==15 && m==7 || d==1 && m==10 || d==11 && m==10 || d==25 && m==11 || d==26 && m==11 )
     {
         return true;
+    }
+    else 
+    {
+        return false;
     }
 }
 
@@ -177,6 +248,7 @@ function pre()
 {
     clear_table();
     r_--;
+    ruchome = swieta_ruchome(r_);
     for(let i=0; i<12; ++i)
     {
         rysuj(i, r_);
@@ -187,6 +259,7 @@ function next()
 {
     clear_table();
     r_++;
+    ruchome = swieta_ruchome(r_);
     for(let i=0; i<12; ++i)
     {
         rysuj(i, r_);
