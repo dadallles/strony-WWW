@@ -1,0 +1,116 @@
+﻿body {
+	margin: 0;
+	padding: 0;
+	background-color: silver;
+}
+
+a {
+	text-decoration: none;
+	overflow: hidden;
+}
+
+#all_site {
+	position: absolute;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, 0%);
+	width: 100%;
+	height: 100%;
+}
+
+#list {
+	height: 100%;
+	width: 100%;
+}
+
+.list_element {
+	width: 20%;
+	float: left;
+	overflow: hidden;
+	position: relative;
+}
+
+.list_element img {
+	transition: all 0.5s ease-in-out;
+}
+
+.list_element img:hover {
+	-moz-transform-origin: center;
+	-o-transform-origin: center; 
+	-ms-transform-origin: center;
+	-webkit-transform-origin: center; 
+	transform-origin: center;
+	-moz-transform: rotate(5deg) scale(1.2); 
+	-o-transform: rotate(5deg) scale(1.2);
+	-ms-transform: rotate(5deg) scale(1.2); 
+	-webkit-transform: rotate(5deg) scale(1.2);
+	transform: rotate(5deg) scale(1.2);
+}
+
+.special_effect img:hover {
+	transform:rotate(720deg); 
+	-webkit-transform:rotate(720deg); 
+	-moz-transform:rotate(720deg); 
+	-o-transform:rotate(720deg)
+}
+
+.special_effect_2 img:hover {
+	-moz-transform: translate(30px, 30px);
+	-o-transform: translate(30px, 30px);
+	-ms-transform: translate(30px, 30px);
+	-webkit-transform: translate(30px, 30px);
+	transform: translate(30px, 30px);
+	-moz-transition: 1s all steps(5, start);
+	-webkit-transition: 1s all step-end steps(5, start);
+	-o-transition: 1s all steps(5, start);
+	transition: 1s all steps(5, start);
+}
+
+.special_effect_3 img:hover {
+	-ms-transform: skew(20deg, 10deg);
+	transform: skew(20deg, 10deg);
+}
+
+.special_effect_4 img:hover {
+	-ms-transform: skew(-15deg, -30deg);
+	transform: skew(-15deg, -30deg);
+}
+
+.special_effect_5 img:hover {
+	-ms-transform: matrix(1, -0.3, 0, 1, 0, 0);
+	transform: matrix(1, -0.3, 0, 1, 0, 0);
+	opacity: 0.5;
+}
+
+a > img {
+	width: 90%;
+	height: 90%;
+	margin: 3%;
+	overflow: hidden;
+}
+
+#foto {
+	clear: both;
+	position: absolute;
+	width: 70%;
+	height: 100%;
+	padding: 5% 15% 5% 15%;
+	top: 0px;
+	left: 0px;
+	visibility: hidden;
+	z-index: 1;	
+}
+
+#foto img {
+	width: 100%;
+	-webkit-box-shadow: 0px 0px 15px 25px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 15px 25px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 15px 25px rgba(0,0,0,0.75);
+}
+
+.big {
+	font-weight: bold;
+	font-size: 200%;
+}
+
+ 
